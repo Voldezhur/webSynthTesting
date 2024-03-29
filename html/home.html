@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Testing</title>
+    </head>
+    <body>
+        <h1>Fuck my life</h1>
+        
+        <button id="note-btn">Одна нота</button>
+        <button id="play-btn">Композиция</button>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+        <script>
+            const noteButton = document.getElementById("note-btn");  // Референс к кнопке
+            const playButton = document.getElementById("play-btn");  // Референс к кнопке
+
+            const synth = new Tone.Synth().toDestination();  // Создаем синтезатор (toDestination чтобы звук играл из выхода)
+            
+            
+            noteButton.addEventListener("click", () => {  // Функция для клика кнопки
+                if (Tone.context.state != "running")
+                {
+                    Tone.start();  // Браузеры блокируют автопроигрывание звука, так что включаем его, если он не включен
+                }
+
+                synth.triggerAttackRelease("E4", "8n");  // Играем ноту Рэ в 4 октаве с длительностью 1/8
+            });
+
+            playButton.addEventListener("click", () => {  // Функция для клика кнопки
+                if (Tone.context.state != "running")
+                {
+                    Tone.start();  // Браузеры блокируют автопроигрывание звука, так что включаем его, если он не включен
+                }
+                // Базовая композиция для тестирования
+                synth.triggerAttackRelease("E4", "8n");  // Играем ноту Рэ в 4 октаве с длительностью 1/8
+                synth.triggerAttackRelease("D4#", "8n");
+                synth.triggerAttackRelease("E4", "8n");
+                synth.triggerAttackRelease("D4#", "8n");
+                synth.triggerAttackRelease("E4", "8n");
+                synth.triggerAttackRelease("B4", "8n");
+                synth.triggerAttackRelease("D4", "8n");
+                synth.triggerAttackRelease("C4", "8n");
+                synth.triggerAttackRelease("A4", "8n");
+            });
+
+            console.log(Tone.context.state);  // Вывод статуса для тестирования
+        </script>
+    </body>
+</html>    
