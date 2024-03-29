@@ -10,6 +10,7 @@
             <button id="note-btn">Одна нота</button>
             <button id="play-btn">Проиграть композицию</button>
             <button id="clear-btn">Очистить композицию</button>
+            <button id="backspace-btn">Убрать последнюю ноту</button>
         </nav>
 
         <div>
@@ -28,12 +29,21 @@
             <button id="note-B">(B) Си</button>
         </div>
 
+        <div id="currentNotes">
+            
+        </div>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
         <script>
-            const noteButton = document.getElementById("note-btn");  // Референс к кнопке
-            const playButton = document.getElementById("play-btn");  // Референс к кнопке
-            const clearButton = document.getElementById("clear-btn");  // Референс к кнопке
+            const currentNotesDiv = document.getElementById("currentNotes");
 
+            const noteButton = document.getElementById("note-btn");  // Референс к кнопке
+            const playButton = document.getElementById("play-btn");
+            const clearButton = document.getElementById("clear-btn");
+            const backspaceButton = document.getElementById("backspace-btn");
+
+
+            // Кнопки нот
             const buttonNoteC = document.getElementById("note-C");
             const buttonNoteCsharp = document.getElementById("note-C#");
             const buttonNoteD = document.getElementById("note-D");
@@ -76,6 +86,10 @@
                 notes.forEach(element => {
                     console.log(element);
                 });
+            });
+
+            backspaceButton.addEventListener("click", () => {
+                notes.pop();
             });
 
             // note buttons
